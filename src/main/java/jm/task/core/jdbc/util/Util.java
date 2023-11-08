@@ -7,10 +7,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
@@ -35,20 +31,5 @@ public class Util {
             }
         }
         return sessionFactory;
-    }
-
-    public static Connection getConnection() {
-        final String HOSTNAME = "jdbc:mysql://localhost:3306/mydb";
-        final String USERNAME = "root";
-        final String PASS = "root";
-        {
-            try {
-                Driver driver = new com.mysql.cj.jdbc.Driver();
-                DriverManager.registerDriver(driver);
-                return DriverManager.getConnection(HOSTNAME, USERNAME, PASS);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 }
