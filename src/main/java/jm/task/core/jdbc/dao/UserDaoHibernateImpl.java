@@ -20,7 +20,6 @@ public class UserDaoHibernateImpl implements UserDao {
                     " (id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT," +
                     " name VARCHAR(30), lastName VARCHAR(30), age INTEGER)").executeUpdate();
             transaction.commit();
-            session.close();
         }
     }
 
@@ -30,7 +29,6 @@ public class UserDaoHibernateImpl implements UserDao {
             Transaction transaction = session.beginTransaction();
             session.createSQLQuery("DROP TABLE IF EXISTS users").executeUpdate();
             transaction.commit();
-            session.close();
         }
     }
 
@@ -44,7 +42,6 @@ public class UserDaoHibernateImpl implements UserDao {
             user.setAge(age);
             session.save(user);
             transaction.commit();
-            session.close();
         }
     }
 
@@ -55,7 +52,6 @@ public class UserDaoHibernateImpl implements UserDao {
             User user = session.get(User.class, id);
             session.delete(user);
             transaction.commit();
-            session.close();
         }
     }
 
@@ -73,7 +69,6 @@ public class UserDaoHibernateImpl implements UserDao {
             Transaction transaction = session.beginTransaction();
             session.createSQLQuery("TRUNCATE TABLE users").executeUpdate();
             transaction.commit();
-            session.close();
         }
     }
 }
